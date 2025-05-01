@@ -1,0 +1,6 @@
+-entry state
+-print all tasks
+-add task
+-update task (modify priority/terminat)
+-complete task
+-quit

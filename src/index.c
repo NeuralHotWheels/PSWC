@@ -11,7 +11,7 @@ struct node{
 };
 
 //output number of nodes
-int lenght(struct node* hPtr){
+int length(struct node* hPtr){
     struct node* p= hPtr;
     p= p->next;
     int i= 1;
@@ -26,7 +26,7 @@ int lenght(struct node* hPtr){
 //hPtr: list head pointer
 //print name of nodes
 void print(struct node* hPtr){
-    if(lenght(hPtr)==0){
+    if(length(hPtr)==0){
         printf("no tasks added\n");
         return;
     }
@@ -49,8 +49,7 @@ priority->index
 name of node-> nm
 */
 void add(int index, char nm[50], struct node* hPtr){
-    if(lenght(hPtr)+1<index){
-        printf("add: index out of bound at %d\n",index);
+    if(length(hPtr)+1<index){
         return;
     }
     struct node* p= hPtr;
@@ -68,8 +67,7 @@ delete node
 priority->index 
 */
 void del(int index, struct node* hPtr){
-    if(lenght(hPtr)<index){
-        printf("del: index out of bound at %d\n",index);
+    if(length(hPtr)<index){
         return;
     }
     struct node* p= hPtr;
@@ -122,18 +120,18 @@ int main(){
         */
         printf("COMMAND SET:\n-tasks\n-add\n-update\n-remove\n-quit\n--");
         scanf("%s",cmd);
-        printf("%s\n",cmd);
         
         // add new task
         if(strcmp(cmd,"add")==0){
             int pT;
             char nT[50];
-            printf("enter task name: ");
-            scanf("%s",nT);
             printf("enter task priority: ");
             scanf("%d",&pT);
-            if(pT>lenght(head)+1){
-                pT= lenght(head)+1;
+            printf("enter task name: ");
+            scanf("%s",nT);
+            
+            if(pT>length(head)+1){
+                pT= length(head)+1;
             }
             add(pT,nT,head);
             printf("task added\n");
@@ -141,6 +139,7 @@ int main(){
         //show task list
         else if(strcmp(cmd,"tasks")==0){
             print(head);
+            printf("len: %d\n",length(head));
         }
         //update task
         else if(strcmp(cmd,"update")==0){
@@ -151,21 +150,25 @@ int main(){
             scanf("%d",&pT1);
             printf("enter new priority of task: ");
             scanf("%d",&pT2);
-            if(pT1>lenght(head) | pT2>lenght(head)){
+            if(pT1>length(head) | pT2>length(head)){
                 printf("index out of bound");
             }
             transfer(pT1,pT2,head);
+            print(head);
         }
         //delete
         else if(strcmp(cmd,"remove")==0){
             int pT;
             printf("enter priority of tasks to be removed: ");
             scanf("%d",&pT);
-            if(pT>lenght(head)){
-                printf("index of out of bound");
+            if(pT>length(head)){
+                printf("task with priorty %d does not exist", pT);
+            }
+            else{
+                printf("task removed\n");
             }
             del(pT,head);
-            printf("task added\n");
+            
         }
         //quit
         else if(strcmp(cmd,"quit")==0){

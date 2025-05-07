@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lib.h"
-
+//gcc -o test test.c lib.c  use this to create executable test.exe
 int main() {
     struct node* head = (struct node*) malloc(sizeof(struct node));
     strcpy(head->name, "null");

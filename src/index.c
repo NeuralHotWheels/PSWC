@@ -125,10 +125,10 @@ int main(){
         if(strcmp(cmd,"add")==0){
             int pT;
             char nT[50];
+            printf("enter task name: ");
+            scanf(" %49[^\n]",nT);
             printf("enter task priority: ");
             scanf("%d",&pT);
-            printf("enter task name: ");
-            scanf("%s",nT);
             
             if(pT>length(head)+1){
                 pT= length(head)+1;
